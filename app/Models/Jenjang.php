@@ -13,4 +13,9 @@ class Jenjang extends Model
         'nama',
         'status',
     ];
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'jenjang_id');
+    }
 }

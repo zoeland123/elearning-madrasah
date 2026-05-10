@@ -12,15 +12,15 @@ class UserSeeder extends Seeder
     {
         // admin
         $userData = [
-            'name' => 'Admin',
-            'username' => 'admin',
-            'email' => 'info@belajar.com',
+            'name' => 'Tatabiin Hairudin Ambo',
+            'username' => 'atta',
+            'email' => 'admin@madrasah.com',
             'role' => 'admin',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('admin'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'info@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'admin@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -33,15 +33,15 @@ class UserSeeder extends Seeder
 
         // Super Admin
         $userData = [
-            'name' => 'Super Admin',
+            'name' => 'Super Admin Madrasah',
             'username' => 'superadmin',
-            'email' => 'super@belajar.com',
+            'email' => 'superadmin@madrasah.com',
             'role' => 'Super Admin',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('admin'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'super@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'superadmin@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -54,15 +54,15 @@ class UserSeeder extends Seeder
 
         // Murid
         $userData = [
-            'name' => 'Murid',
-            'username' => 'Murid',
-            'email' => 'murid@belajar.com',
+            'name' => 'Murid Madrasah',
+            'username' => 'murid',
+            'email' => 'murid@madrasah.com',
             'role' => 'Murid',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('murid123'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'murid@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'murid@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -75,15 +75,15 @@ class UserSeeder extends Seeder
 
         // Guru
         $userData = [
-            'name' => 'Guru',
-            'username' => 'Guru',
-            'email' => 'guru@belajar.com',
+            'name' => 'Guru Madrasah',
+            'username' => 'guru',
+            'email' => 'guru@madrasah.com',
             'role' => 'Guru',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('guru123'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'guru@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'guru@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -96,15 +96,15 @@ class UserSeeder extends Seeder
 
         // Kepala Sekolah
         $userData = [
-            'name' => 'Kepala Sekolah',
-            'username' => 'kepsek',
-            'email' => 'kepsek@belajar.com',
+            'name' => 'Kepala Madrasah',
+            'username' => 'kepala',
+            'email' => 'kepala@madrasah.com',
             'role' => 'Kepala Sekolah',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('kepala123'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'kepsek@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'kepala@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -117,15 +117,15 @@ class UserSeeder extends Seeder
 
         // Staf
         $userData = [
-            'name' => 'Staf',
+            'name' => 'Staf Madrasah',
             'username' => 'staf',
-            'email' => 'staf@belajar.com',
+            'email' => 'staf@madrasah.com',
             'role' => 'Staf',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('staf123'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'staf@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'staf@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -138,15 +138,15 @@ class UserSeeder extends Seeder
 
         // Orang Tua
         $userData = [
-            'name' => 'Orang Tua',
-            'username' => 'orangtua',
-            'email' => 'ortu@belajar.com',
+            'name' => 'Wali Murid',
+            'username' => 'wali',
+            'email' => 'wali@madrasah.com',
             'role' => 'Orang Tua',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('wali123'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'ortu@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'wali@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');
@@ -159,15 +159,15 @@ class UserSeeder extends Seeder
 
         // Guest
         $userData = [
-            'name' => 'Guest',
+            'name' => 'Tamu',
             'username' => 'guest',
-            'email' => 'guest@belajar.com',
+            'email' => 'guest@madrasah.com',
             'role' => 'Guest',
             'status' => 'Aktif',
-            'password' => bcrypt('Bismillah'),
+            'password' => bcrypt('guest123'),
         ];
 
-        $user = User::updateOrCreate(['email' => 'guest@belajar.com'], $userData);
+        $user = User::updateOrCreate(['email' => 'guest@madrasah.com'], $userData);
 
         if ($user->wasRecentlyCreated) {
             $this->command->info('Data User ' . $user->name . ' has been saved.');

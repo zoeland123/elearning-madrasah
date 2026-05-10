@@ -18,7 +18,7 @@
         @include('frontend.partials.navbar')
     </header>
     <!--- #SEARCH BOX-->
-    <div class="search-container" data-search-box>
+    <div class="search-container" data-search-box style="display: none;">
         <div class="container">
 
             <button class="search-close-btn" aria-label="Close search" data-search-toggler>

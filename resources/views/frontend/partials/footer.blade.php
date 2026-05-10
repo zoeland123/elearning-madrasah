@@ -4,13 +4,13 @@
 
         <div class="footer-brand">
 
-            <a href="#" class="logo">EduHome</a>
+            <a href="{{ route('home') }}" class="logo">
+                <img src="{{ asset('images/logo-madrasah.svg') }}" alt="Logo MA Ikhlas Beramal" style="height: 50px; width: auto;">
+                <span style="margin-left: 10px; font-weight: 700; color: #2d5016;">MA Ikhlas Beramal</span>
+            </a>
 
             <p class="section-text">
-                It is a long established fact that a reader will be distracted by the readable content of a page
-                when
-                looking at its
-                layout. The point of using Lorem Ipsum.
+                Madrasah Aliyah Ikhlas Beramal adalah lembaga pendidikan Islam yang mengintegrasikan kurikulum nasional dengan nilai-nilai keislaman untuk membentuk generasi yang berakhlak mulia dan berprestasi.
             </p>
 
             <ul class="social-list">
@@ -46,54 +46,38 @@
         <ul class="footer-list">
 
             <li>
-                <p class="footer-list-title">Explore</p>
+                <p class="footer-list-title">Jelajahi</p>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('about') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">About Us</span>
+                    <span class="span">Tentang Kami</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('event') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">Upcoming Events</span>
+                    <span class="span">Kegiatan</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('contact') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">Blog & News</span>
+                    <span class="span">Kontak</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('login') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">FAQ Question</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">
-                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-
-                    <span class="span">Testimonial</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">
-                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-
-                    <span class="span">Privacy Policy</span>
+                    <span class="span">E-Learning</span>
                 </a>
             </li>
 
@@ -102,54 +86,38 @@
         <ul class="footer-list">
 
             <li>
-                <p class="footer-list-title">Useful Links</p>
+                <p class="footer-list-title">Link Berguna</p>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('contact') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">Contact Us</span>
+                    <span class="span">Hubungi Kami</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('about') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">Pricing Plan</span>
+                    <span class="span">Visi & Misi</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('event') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">Instructor Profile</span>
+                    <span class="span">Kegiatan Madrasah</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" class="footer-link">
+                <a href="{{ route('login') }}" class="footer-link">
                     <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
 
-                    <span class="span">FAQ</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">
-                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-
-                    <span class="span">Popular Courses</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">
-                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-
-                    <span class="span">Terms & Conditions</span>
+                    <span class="span">Portal E-Learning</span>
                 </a>
             </li>
 
@@ -158,33 +126,33 @@
         <ul class="footer-list">
 
             <li>
-                <p class="footer-list-title">Contact Info</p>
+                <p class="footer-list-title">Informasi Kontak</p>
             </li>
 
             <li class="footer-item">
                 <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
 
                 <address class="footer-link">
-                    275 Quadra Street Victoria Road, New York
+                    Jl. Pendidikan No. 123, Kota Anda, Indonesia
                 </address>
             </li>
 
             <li class="footer-item">
                 <ion-icon name="call" aria-hidden="true"></ion-icon>
 
-                <a href="tel:+13647657839" class="footer-link">+ 1 (364) 765-7839</a>
+                <a href="tel:+6281234567890" class="footer-link">+62 812-3456-7890</a>
             </li>
 
             <li class="footer-item">
                 <ion-icon name="call" aria-hidden="true"></ion-icon>
 
-                <a href="tel:+13647657840" class="footer-link">+ 1 (364) 765-7840</a>
+                <a href="tel:+6281234567891" class="footer-link">+62 812-3456-7891</a>
             </li>
 
             <li class="footer-item">
                 <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
 
-                <a href="mailto:contact@eduhome.com" class="footer-link">contact@eduhome.com</a>
+                <a href="mailto:info@maikhlasbera mal.sch.id" class="footer-link">info@maikhlasbera mal.sch.id</a>
             </li>
 
         </ul>
@@ -193,7 +161,7 @@
 
     <div class="footer-bottom">
         <p class="copyright">
-            Copyright 2022 EduHome. All Rights Reserved by <a href="#" class="copyright-link">codewithsadee</a>
+            © 2024 MA Ikhlas Beramal. Developed by <a href="#" class="copyright-link" style="color: #ffd700; font-weight: 600;">Tatabiin Hairudin Ambo</a>
         </p>
     </div>
 

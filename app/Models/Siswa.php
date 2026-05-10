@@ -16,5 +16,11 @@ class Siswa extends Model
         'tanggal_lahir',
         'alamat',
         'jenjang',
+        'kelas_id',
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }
