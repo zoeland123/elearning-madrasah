@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elearning-app
+  namespace: latihan
+  labels:
+    app: elearning
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elearning
+  template:
+    metadata:
+      labels:
+        app: elearning
+    spec:
+      initContainers:
+        - name: init-setup
+          image: zambo123/elearning-madrasah:latest
+          command: ["sh", "-c"]
+          args:
+            - |
+              cp -n /var/www/database/database.sqlite /data/database.sqlite || true
+              php artisan config:clear
+              php artisan migrate --force
+          envFrom:
+            - configMapRef:
+                name: elearning-config
+            - secretRef:
+                name: elearning-secret
+          env:
+            - name: APP_URL
+              value: "http://elearning.latihan.local"
+            - name: DB_DATABASE
+              value: "/data/database.sqlite"
+          volumeMounts:
+            - name: sqlite-data
+              mountPath: /data
+            - name: app-storage
+              mountPath: /var/www/storage
+
+      containers:
+        - name: app
+          image: zambo123/elearning-madrasah:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: elearning-config
+            - secretRef:
+                name: elearning-secret
+          env:
+            - name: APP_URL
+              value: "http://elearning.latihan.local"
+            - name: DB_DATABASE
+              value: "/data/database.sqlite"
+          volumeMounts:
+            - name: sqlite-data
+              mountPath: /data
+            - name: app-storage
+              mountPath: /var/www/storage
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+      volumes:
+        - name: sqlite-data
+          emptyDir: {}
+        - name: app-storage
+          emptyDir: {}
