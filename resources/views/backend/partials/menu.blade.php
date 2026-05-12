@@ -20,8 +20,8 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu Utama</li>
 
-                <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                    <a href="/home" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>

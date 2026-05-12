@@ -20,8 +20,17 @@ class User extends Authenticatable
         'role',
         'status',
         'foto_profile',
+        'avatar',
         'email',
         'password',
+        'phone',
+        'jenis_kelamin',
+        'alamat',
+        'tanggal_lahir',
+        'nisn',
+        'nip',
+        'mata_pelajaran',
+        'kelas',
     ];
 
 

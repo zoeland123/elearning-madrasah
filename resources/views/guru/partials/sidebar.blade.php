@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="{{ route('guru.dashboard') }}" class="d-flex align-items-center">
+                <a href="{{ route('guru.dashboard') }}" class="d-flex align-items-center">
                         <img src="{{ asset('images/logo-madrasah.svg') }}" alt="Logo" style="height: 40px;">
                         <span style="margin-left: 10px; font-weight: 700; color: #2d5016;">Dashboard Guru</span>
                     </a>

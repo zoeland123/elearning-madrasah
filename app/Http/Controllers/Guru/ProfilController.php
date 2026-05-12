@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
@@ -15,6 +16,30 @@ class ProfilController extends Controller
         return view('guru.profil.index', compact('user'));
     }
 
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name'          => 'required|string|max:255',
+            'phone'         => 'nullable|string|max:20',
+            'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
+            'alamat'        => 'nullable|string',
+            'nip'           => 'nullable|string|max:50',
+            'mata_pelajaran'=> 'nullable|string|max:100',
+        ]);
+
+        $user = Auth::user();
+        $user->update([
+            'name'           => $request->name,
+            'phone'          => $request->phone,
+            'jenis_kelamin'  => $request->jenis_kelamin,
+            'alamat'         => $request->alamat,
+            'nip'            => $request->nip,
+            'mata_pelajaran' => $request->mata_pelajaran,
+        ]);
+
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+    }
+
     public function updateAvatar(Request $request)
     {
         $request->validate([
@@ -23,17 +48,31 @@ class ProfilController extends Controller
 
         $user = Auth::user();
 
-        // Delete old avatar if exists
         if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
             Storage::disk('public')->delete($user->avatar);
         }
 
-        // Store new avatar
         $avatarPath = $request->file('avatar')->store('avatars', 'public');
-        
-        $user->avatar = $avatarPath;
-        $user->save();
+        $user->update(['avatar' => $avatarPath]);
 
-        return redirect()->back()->with('success', 'Foto profil berhasil diupdate!');
+        return redirect()->back()->with('success', 'Foto profil berhasil diperbarui!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password'         => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Password lama tidak sesuai.']);
+        }
+
+        $user->update(['password' => Hash::make($request->password)]);
+
+        return redirect()->back()->with('success', 'Password berhasil diubah!');
     }
 }

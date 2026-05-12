@@ -68,6 +68,8 @@ Route::middleware(['auth'])->prefix('student')->name('siswa.')->group(function (
     Route::get('/konsultasi', function () { return view('siswa.konsultasi.index'); })->name('konsultasi');
     Route::get('/profil', [\App\Http\Controllers\Siswa\ProfilController::class, 'index'])->name('profil');
     Route::post('/profil/avatar', [\App\Http\Controllers\Siswa\ProfilController::class, 'updateAvatar'])->name('profil.avatar');
+    Route::post('/profil/update', [\App\Http\Controllers\Siswa\ProfilController::class, 'update'])->name('profil.update');
+    Route::post('/profil/password', [\App\Http\Controllers\Siswa\ProfilController::class, 'updatePassword'])->name('profil.password');
 });
 
 // Guru Routes
@@ -86,6 +88,8 @@ Route::middleware(['auth'])->prefix('teacher')->name('guru.')->group(function ()
     Route::post('/konsultasi/{siswaId}/reply', [\App\Http\Controllers\Guru\KonsultasiController::class, 'reply'])->name('konsultasi.reply');
     Route::get('/profil', [\App\Http\Controllers\Guru\ProfilController::class, 'index'])->name('profil');
     Route::post('/profil/avatar', [\App\Http\Controllers\Guru\ProfilController::class, 'updateAvatar'])->name('profil.avatar');
+    Route::post('/profil/update', [\App\Http\Controllers\Guru\ProfilController::class, 'update'])->name('profil.update');
+    Route::post('/profil/password', [\App\Http\Controllers\Guru\ProfilController::class, 'updatePassword'])->name('profil.password');
 });
 
 Auth::routes();

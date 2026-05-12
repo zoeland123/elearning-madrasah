@@ -107,84 +107,121 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $jenjangSMP = \App\Models\Kelas::where('jenjang', 'SMP')->count();
+                        $jenjangSMA = \App\Models\Kelas::where('jenjang', 'SMA')->count();
+                        $totalSiswa = \App\Models\Siswa::count();
+                        $totalGuru = \App\Models\Guru::count();
+                        $totalKelas = \App\Models\Kelas::count();
+                        $totalMapel = \App\Models\MataPelajaran::count();
+                        $totalElearning = \App\Models\ELearning::count();
+                        $totalSoal = \App\Models\Soal::count();
+                    @endphp
+
+                    {{-- Grafik Bar: Statistik Keseluruhan --}}
                     <div class="row">
-                        <div class="col-12 col-xl-6">
+                        <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h4>Data Jenjang</h4>
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4>📊 Statistik E-Learning</h4>
+                                    <span class="badge bg-success">{{ date('Y') }}/{{ date('Y')+1 }}</span>
                                 </div>
                                 <div class="card-body">
-                                    @php
-                                        $jenjangSMP = \App\Models\Kelas::where('jenjang', 'SMP')->count();
-                                        $jenjangSMA = \App\Models\Kelas::where('jenjang', 'SMA')->count();
-                                    @endphp
-                                    <div class="row mb-3">
-                                        <div class="col-7">
-                                            <div class="d-flex align-items-center">
-                                                <svg class="bi" width="32" height="32" fill="#2d5016" style="width:10px">
-                                                    <use xlink:href="{{ asset('backend/assets/static/images/bootstrap-icons.svg#circle-fill') }}" />
-                                                </svg>
-                                                <h5 class="mb-0 ms-3">SMP/MTs</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <h5 class="mb-0 text-end">{{ $jenjangSMP }} Kelas</h5>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-7">
-                                            <div class="d-flex align-items-center">
-                                                <svg class="bi" width="32" height="32" fill="#5a8c2e" style="width:10px">
-                                                    <use xlink:href="{{ asset('backend/assets/static/images/bootstrap-icons.svg#circle-fill') }}" />
-                                                </svg>
-                                                <h5 class="mb-0 ms-3">SMA/MA</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-5">
-                                            <h5 class="mb-0 text-end">{{ $jenjangSMA }} Kelas</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Aktivitas Terbaru</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-lg">
-                                            <thead>
-                                                <tr>
-                                                    <th>Tanggal</th>
-                                                    <th>Aktivitas</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="col-4">
-                                                        <p class="mb-0">{{ date('d M Y') }}</p>
-                                                    </td>
-                                                    <td class="col-auto">
-                                                        <p class="mb-0">Sistem E-Learning aktif</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="col-4">
-                                                        <p class="mb-0">{{ date('d M Y') }}</p>
-                                                    </td>
-                                                    <td class="col-auto">
-                                                        <p class="mb-0">Dashboard diperbarui</p>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <div id="chart-statistik"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {{-- Grafik Donut + Bar Jenjang --}}
+                    <div class="row">
+                        <div class="col-12 col-xl-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>🏫 Distribusi Kelas per Jenjang</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div id="chart-jenjang"></div>
+                                    <div class="row mt-3">
+                                        <div class="col-6 text-center">
+                                            <h5 class="text-success">{{ $jenjangSMP }}</h5>
+                                            <small class="text-muted">Kelas SMP/MTs</small>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <h5 class="text-primary">{{ $jenjangSMA }}</h5>
+                                            <small class="text-muted">Kelas SMA/MA</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-7">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>📈 Progress Konten Pembelajaran</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div id="chart-konten"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                        // Grafik Bar Statistik Keseluruhan
+                        var optionsStatistik = {
+                            series: [{
+                                name: 'Jumlah',
+                                data: [{{ $totalSiswa }}, {{ $totalGuru }}, {{ $totalKelas }}, {{ $totalMapel }}, {{ $totalElearning }}, {{ $totalSoal }}]
+                            }],
+                            chart: { type: 'bar', height: 280, toolbar: { show: false } },
+                            plotOptions: {
+                                bar: { borderRadius: 6, columnWidth: '50%', distributed: true }
+                            },
+                            colors: ['#2d5016','#5a8c2e','#ffd700','#4CAF50','#2196F3','#FF5722'],
+                            dataLabels: { enabled: true },
+                            xaxis: {
+                                categories: ['Siswa','Guru','Kelas','Mata Pelajaran','E-Learning','Soal'],
+                                labels: { style: { fontSize: '12px' } }
+                            },
+                            yaxis: { title: { text: 'Jumlah' } },
+                            legend: { show: false },
+                            tooltip: { y: { formatter: val => val + ' data' } }
+                        };
+                        new ApexCharts(document.querySelector("#chart-statistik"), optionsStatistik).render();
+
+                        // Grafik Donut Jenjang
+                        var optionsJenjang = {
+                            series: [{{ $jenjangSMP > 0 ? $jenjangSMP : 1 }}, {{ $jenjangSMA > 0 ? $jenjangSMA : 1 }}],
+                            chart: { type: 'donut', height: 220 },
+                            labels: ['SMP/MTs', 'SMA/MA'],
+                            colors: ['#5a8c2e', '#2d5016'],
+                            legend: { position: 'bottom' },
+                            dataLabels: { enabled: true },
+                            plotOptions: { pie: { donut: { size: '65%' } } }
+                        };
+                        new ApexCharts(document.querySelector("#chart-jenjang"), optionsJenjang).render();
+
+                        // Grafik Area Konten
+                        var optionsKonten = {
+                            series: [
+                                { name: 'E-Learning', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {{ $totalElearning }}] },
+                                { name: 'Soal', data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {{ $totalSoal }}] }
+                            ],
+                            chart: { type: 'area', height: 250, toolbar: { show: false } },
+                            colors: ['#2d5016', '#ffd700'],
+                            dataLabels: { enabled: false },
+                            stroke: { curve: 'smooth', width: 2 },
+                            xaxis: {
+                                categories: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des']
+                            },
+                            fill: { type: 'gradient', gradient: { opacityFrom: 0.6, opacityTo: 0.1 } },
+                            legend: { position: 'top' }
+                        };
+                        new ApexCharts(document.querySelector("#chart-konten"), optionsKonten).render();
+                        });
+                    </script>
                 </div>
                 <div class="col-12 col-lg-3">
                     <div class="card">
