@@ -4,10 +4,11 @@ metadata:
   name: elearning-config
   namespace: latihan
 data:
-  APP_NAME: "Laravel"
+  APP_NAME: "elearning-madrasah"
   APP_ENV: "production"
   APP_DEBUG: "false"
   APP_TIMEZONE: "UTC"
+  APP_URL: "http://elearning.latihan.local"
   APP_LOCALE: "en"
   APP_FALLBACK_LOCALE: "en"
   APP_FAKER_LOCALE: "en_US"
